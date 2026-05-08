@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Legends</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+header{text-align:center;padding:20px;font-size:28px;font-weight:800;letter-spacing:3px;animation:fadeDown 1s ease}
+.hero{text-align:center;padding:80px 20px}
+.hero h1{font-size:48px;font-weight:800;animation:fadeUp 1s ease}
+.hero p{color:#aaa;margin-top:10px;animation:fadeUp 1.5s ease}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:40px}
+.card{background:#111;border-radius:15px;overflow:hidden;transition:0.4s;transform:translateY(40px);opacity:0}
+.card.visible{transform:translateY(0);opacity:1}
+.card:hover{transform:scale(1.05)}
+.img-wrap{overflow:hidden}
+.card img{width:100%;height:320px;object-fit:cover;transition:0.6s}
+.card:hover img{transform:scale(1.2)}
+.card-content{text-align:center;padding:15px}
+.price{color:#00ffcc;margin-top:5px}
+.buy-btn{margin-top:10px;padding:10px 20px;background:#25D366;border:none;color:#fff;border-radius:20px;cursor:pointer}
+.badge{background:red;padding:5px 10px;border-radius:10px;font-size:12px;display:inline-block;margin-top:5px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;padding:40px}
+.gallery img{width:100%;filter:blur(4px);transition:0.4s}
+.gallery img:hover{filter:blur(0);transform:scale(1.05)}
+.slider{position:relative;max-width:500px;margin:40px auto}
+.slider img{width:100%}
+.slider .after{position:absolute;top:0;left:0;width:50%;overflow:hidden}
+.slider input{width:100%}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px;border-radius:50%;font-size:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<header>DIGITAL LEGENDS</header>
+
+<section class="hero">
+<h1>CREATE. OWN. DOMINATE.</h1>
+<p>Premium digital products for creators who refuse to stay average.</p>
+</section>
+
+<section class="products">
+
+<div class="card"><div class="img-wrap"><img src="images/midnight-empire.jpg"></div><div class="card-content"><h3>Midnight Empire</h3><div class="price">R149</div><div class="badge">🔥 Selling Fast</div><button class="buy-btn" onclick="buy('Midnight Empire')">Buy Now</button></div></div>
+
+<div class="card"><div class="img-wrap"><img src="images/millionaire-code.jpg"></div><div class="card-content"><h3>Millionaire Code</h3><div class="price">R99</div><div class="badge">⚡ Starter</div><button class="buy-btn" onclick="buy('Millionaire Code')">Buy Now</button></div></div>
+
+<div class="card"><div class="img-wrap"><img src="images/silent-killer.jpg"></div><div class="card-content"><h3>Silent Killer</h3><div class="price">R129</div><div class="badge">🔥 Popular</div><button class="buy-btn" onclick="buy('Silent Killer')">Buy Now</button></div></div>
+
+<div class="card"><div class="img-wrap"><img src="images/love-beyond-time.jpg"></div><div class="card-content"><h3>Love Beyond Time</h3><div class="price">R119</div><div class="badge">❤️ Trending</div><button class="buy-btn" onclick="buy('Love Beyond Time')">Buy Now</button></div></div>
+
+</section>
+
+<h2 style="text-align:center">Preview Gallery</h2>
+<section class="gallery">
+<img src="images/gallery1.jpg">
+<img src="images/gallery2.jpg">
+<img src="images/gallery3.jpg">
+<img src="images/gallery4.jpg">
+</section>
+
+<h2 style="text-align:center">Before / After</h2>
+<div class="slider">
+<img src="images/before.jpg">
+<div class="after">
+<img src="images/after.jpg">
+</div>
+<input type="range" min="0" max="100" value="50" oninput="slide(this.value)">
+</div>
+
+<a class="whatsapp" href="https://wa.me/27665647535?text=Hi%20I%20want%20to%20buy">💬</a>
+
+<script>
+function buy(product){
+let msg = `Hi, I want to buy ${product}. Please send payment details.`;
+window.open(`https://wa.me/27665647535?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function slide(val){document.querySelector('.after').style.width = val + '%'}
+
+const cards = document.querySelectorAll('.card');
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+const rect = card.getBoundingClientRect();
+if(rect.top < window.innerHeight-100){card.classList.add('visible')}
+})
+})
+</script>
+
+</body>
+</html>
